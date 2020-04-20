@@ -175,6 +175,8 @@
   }
   ```
 
+  > 请先将 `dataste.zip` 解压到 `dataset` ，确保 `dataset` 下包含各主题文件夹
+  >
   > 将生成模型 API 接口填入 `GEN_API` ，当 `whoosh` 检索没有返回结果时，调用该接口进行回复生成
 
 - **初始化**
@@ -182,7 +184,7 @@
   创建索引文件
 
   ```shell
-  python ir_system.py -mode init
+  python ir_system.py init
   ```
 
   
@@ -192,9 +194,9 @@
   使用 [flask](https://flask.palletsprojects.com/) 提供 API 接口服务，参考 `ir_server.py`
   
   ```shell
-  python ir_system.py -mode server
+  python ir_system.py server
   ```
-  或（`pip install gunicorn`）
+  或者（`pip install gunicorn`，推荐）
   ```shell
   gunicorn -b 0.0.0.0:10240 -w 4 ir_server:app
   ```
@@ -252,10 +254,10 @@
 - **模型训练**
 
   ```shell
-  python train.py --epochs 10 --batch_size 8 --device 0,1 --raw --pretrained_model dialogue_model
+  python train.py --epochs 10 --batch_size 8 --device 0,1 --raw --pretrained_model dialogue_model/model_epoch10
   ```
 
-  > 注：可以使用 [yangjianxin1/GPT2-chitchat](https://github.com/yangjianxin1/GPT2-chitchat) 中提供的模型进行初始化（`--pretrained_model dialogue_model`）
+  > 注：可以使用 [yangjianxin1/GPT2-chitchat](https://github.com/yangjianxin1/GPT2-chitchat) 中提供的模型进行初始化（`--pretrained_model dialogue_model/model_epoch10`）
 
   
 
@@ -266,10 +268,10 @@
     ```python
     CONFIG = {
     	# 数据集位置
-        'DATA_DIR': 'dataset/',
+        'DATA_DIR': '../data/dataset/',
         # 词表
         'voca_path': 'vocabulary/vocab_small.txt',
-        # 对话模型路径
+        # 训练得到的对话模型路径
         'dialogue_model_path': 'dialogue_model/model_epoch10',
         # dialogue history 的最大长度
         'max_history_len': 10,
