@@ -1,0 +1,5 @@
+whoosh==2.7.4
+jieba
+tqdm
+flask
+requests

@@ -1,0 +1,6 @@
+*.pyc
+data/dataset
+generation/dialogue_model_40epoch
+generation/dialogue_model
+generation/data
+retrieval/mcc_ir
