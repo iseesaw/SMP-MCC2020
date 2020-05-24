@@ -25,7 +25,7 @@ app = Flask(__name__)
 IDX = open_dir(dirname=CONFIG.get('IR_DIR'))
 
 
-def search(context='你喜欢看什么电影？', topic='电影', method='sampling', limit=10, data=None, rtype='test'):
+def search(context='你喜欢看什么电影？', topic='电影', method='sampling', limit=100, data=None, rtype='test'):
     """检索函数
     :param context: 对话历史
     :param topic: 对话主题
@@ -55,7 +55,9 @@ def search(context='你喜欢看什么电影？', topic='电影', method='sampli
             except Exception as e:
                 print(str(e))
                 gen_res = '我不知道呀'
-
+        else:
+            gen_res = '我不知道呀'
+            
         return random.choice(cands) if len(cands) else gen_res
 
 

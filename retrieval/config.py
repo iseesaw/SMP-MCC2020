@@ -17,5 +17,5 @@ CONFIG = {
     'HOST': '0.0.0.0',
     'PORT': 10240,
     # 生成模型API接口（默认存在 test 和 get_res 两种路由）
-    'GEN_API': 'http://127.0.0.1:10250'
+    'GEN_API': None
 }
